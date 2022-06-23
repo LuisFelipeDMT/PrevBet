@@ -1,0 +1,227 @@
+conda create -n PrevBet python=3.10.4
+conda activate PrevBet
+Instalar cuda e cudnn
+conda install cudatoolkit=11.3.1 cudnn=8.2.1 -c=conda-forge
+conda install -c anaconda git 
+pip install --upgrade tensorflow==2.9.1 --user
+pip install pandas
+pip install sklearn
+pip install fastapi
+pip install ipdb
+pip install beautifulsoup
+pip install selenium
+pip install jupyter
+pip install chromedriver-binary==103.0.5060.24.0 #Versão verificada em settings/help
+pip install html5lib
+
+
+
+
+git clone https://github.com/akTwelve/Mask_RCNN.git
+cd Mask_rcnn
+python setup.py clean --all install
+pip install -r requirements.txt
+
+pip install --upgrade scikit-image==0.16.2 --user
+pip install --upgrade protobuf==3.20.0 --user
+pip install pycocotools-windows
+
+
+pip install gsutil --> Nunca instalado nos vídeos
+
+
+pip install seaborn--> Nunca instalado nos vídeos
+pip install uvicorn --> Nunca instalado nos vídeos
+pip install gcloud --> Nunca instalado nos vídeos
+
+
+#Verificar GPU
+python
+import tensorflow as tf
+tf.test.is_gpu_available()
+
+#Rodando no ambiente local
+conda info --envs
+uvicorn simple:app --reload
+
+#Rodando no docker
+docker build -t minha_imagem .
+docker images
+docker run -p 8080:8000 minha_imagem
+http://localhost:8080/
+docker stop *image*
+
+#Setando google cloud
+Ativar o Container Registry
+Entrar em IAM e administrador
+Contas de serviço
+Criar conta de serviço
+nome da conta admin
+papel proprietário
+concluir
+clicar na conta
+chaves
+adicionar chave
+criar chave
+incluir nome da chave no gitignore
+
+#Criando variáveis de ambiente
+Enviar o comando PATH
+Copiar o PATH e adicionar;caminho da pasta bin do google-cloud-sdk
+conda env config vars set CLOUDSDK_PYTHON=C:\Users\luisf\anaconda3\envs\ambiente\python.exe
+gcloud auth login
+Realizar login com conta do google cloud
+gcloud auth configure-docker
+gcloud config list
+gcloud config set project sunlit-form-351605
+docker build -t us.gcr.io/sunlit-form-351605/xrimageapi .
+docker push us.gcr.io/sunlit-form-351605/xrimageapi
+docker run -p 8080:8000 us.gcr.io/sunlit-form-351605/xrimageapi
+gcloud run deploy --image us.gcr.io/sunlit-form-351605/xrimageapi --platform managed --region us-central1
+Service name(minhaimagem): xrimageapi
+aceitar ativação da api
+
+#Incluindo arquivos no github
+cd C:\Users\luisf\Desktop\Projetos\X-Ray-Chest-Project\X-Ray_API
+git init
+git remote add origin https://github.com/LuisFelipeDMT/X-Ray_CNN-API
+Entrar no github e mudar main para master
+git config --global user.email 'luisfelipe_trindade@hotmail.com'
+git config --global user.name 'LuisFelipeDMT'
+git pull origin master
+git add --all
+git commit -m "Primeiro commit"
+git push origin master
+git checkout -b luisbranch
+
+#Criando a estrutura web
+conda create -n web_app python==3.10.4
+conda install -c anaconda git
+cd..
+cd WebApp
+pip install django==4.0.4
+pip install django-feather
+pip install django-heroku gunicorn python-decouple
+django-admin startproject webapp_xrimage
+cd webapp_xrimage
+python manage.py runserver
+
+
+#Colocando a página online
+touch .env && nano .env
+Abrir o arquivo settings.py copiar o SECRET_KEY, voltar no promt, colar, apertar ctr+O para escrever e ctr+X para sair.
+Substituir o SECRET_KEY por SECRET_KEY = config('SECRET_KEY')
+Incluir .env no gitignore
+Criar um arquivo do tipo PROCFILE sem extensão com a informação web: gunicorn xrimage.wsgi
+instalar versão para windows
+Enviar o comando PATH
+Copiar o PATH e adicionar;caminho da pasta bin do Heroku (C:\Program Files\heroku\bin)
+heroku login
+heroku keys:add e aceitar
+incluir no settings.py:
+import django_heroku
+from decouple import config
+import dj_database_url
+alterar no settings.py:
+DEBUG=False (Originalmente é True)
+ALLOWED_HOSTS = ["www.xrimage.herokuapp.com"]
+Inserir 'whitenoise.runserver_nostatic' na lista de APPs instalados.
+Inserir 'whitenoise.middleware.WhiteNoiseMiddleware', na lista de Middleware na 2a posição.
+Incluir no final de settings.py STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+django_heroku.settings(locals())
+python manage.py collectstatic para criar uma pasta com todos os arquivos estáticos
+heroku config:set SECRET_KEY="django-insecure-5z&u$*p=@wh6s!67w)j(!wp9_24ekoo*#x3rnb*cqirfp#a+wh"
+
+
+#Testando localhost ( https://www.youtube.com/watch?v=GMbVzl_aLxM Ref)
+heroku create
+heroku git:remote -a xrimage *Nome do app criado pelo heroku
+pip install gunicorn
+gunicorn myproject.wsgi
+http://localhost:8000/
+Criar um arquivo do tipo PROCFILE sem extensão com a informação:
+web: gunicorn xrimage.wsgi
+python manage.py collectstatic --noinput;
+heroku local
+pip freeze > requirements.txt
+SECRET_KEY=Key
+export SECRET_KEY
+printenv SECRET_KEY
+
+
+
+SECRET_KEY==qm&$e=k_4e$j7o3s-q_7c%(wg&e1sc@t&kur#-a=ct7&99pxc
+DEBUG=False
+CLOUD_NAME=dpjqlnltt
+API_KEY=166454558354646
+API_SECRET=SltZggLHhYeNNHcONT_ci9rExqU
+CLOUDINARY_URL=cloudinary://166454558354646:SltZggLHhYeNNHcONT_ci9rExqU@dpjqlnltt
+apiKey=AIzaSyDceHLWV-pMRWNHhy2VRENE-K1SYJUeDEo
+authDomain=xrimage-ia.firebaseapp.com
+projectId=xrimage-ia
+storageBucket=xrimage-ia.appspot.com
+messagingSenderId=105969330026
+appId=1:105969330026:web:7bbfeade9f669faa142713
+measurementId=G-GB3YCHE5BB
+
+
+
+#Incluindo arquivos no github
+cd C:\Users\luisf\Desktop\Projetos\X-Ray-Chest-Project\WebApp
+git init
+git remote add origin https://github.com/LuisFelipeDMT/X-Ray_CNN-Web
+Entrar no github e mudar main para master
+git config --global user.email 'luisfelipe_trindade@hotmail.com'
+git config --global user.name 'LuisFelipeDMT'
+git pull origin master
+git add --all
+git commit -m "Primeiro commit"
+git push origin master
+git checkout -b luisbranch
+
+
+
+#Upload no cloudinary
+pip install django-cloudinary-storage
+ pip install pillow
+Em settings incluir 
+cloudinary.config(
+  cloud_name = force_str(os.environ.get("cloud_name")),
+  api_key = force_str(os.environ.get("api_key")),
+  api_secret = force_str(os.environ.get("api_secret")),
+)
+MEDIA_URL = 'tempupload/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+Em .env incluir valores
+Em models incluir 
+class UploadModel(models.Model):
+name=models.CharField(max_length=100)
+image=models.ImageField(upload_to='images',blank=True)
+no prompt python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+
+#Upload no firebase (https://dev.to/mdrhmn/django-firebase-cloud-storage-331p)
+pip install pyrebase4
+Criar conta no firebase
+criar projeto
+mudar as regras para: 
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write;
+    }
+  }
+}
+Na página iniciar do projeto clicar Add Firebase to your web app
+criar nome 
+copiar configurações e adicionar no .env
+Criar dicionário em settings (MUITO IMPORTANTE - Incluir variável vazia para o database)
+Puxar ele na view como config
+
+
+
+
+
